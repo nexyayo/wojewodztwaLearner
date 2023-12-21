@@ -63,6 +63,65 @@ body::-webkit-scrollbar {
 
 /* ------------------------------------------ */
 
+/* INTERFEJS */
+
+#interface {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.705);
+    box-shadow: 1px 0px 10px rgb(3, 3, 3);
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 500px;
+    width: 300px;
+
+    left: 85%;
+    top: 25%;
+
+    border-radius: 50px;
+
+    transition: 0.5s all ease-in-out;
+}
+
+#interface:hover {
+    background-color: white;
+    transform: scale(1.007);
+}
+
+#scoreboard {
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    z-index: 999;
+    background-color: white;
+
+    width: 100px;
+    height: 50px;
+
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, -50%);
+
+    border-radius: 0px 0px 10px 10px;
+
+}
+
+#score {
+    font-weight: bold;
+}
+
+
+
+/* ------------------------------------------ */
+
 /* MAPA */
 
 #map { 
