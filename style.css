@@ -59,6 +59,7 @@ body::-webkit-scrollbar {
 
 #close-popup:hover {
     transform: scale(1.03);
+    cursor: pointer;
 }
 
 /* ------------------------------------------ */
@@ -118,6 +119,19 @@ body::-webkit-scrollbar {
     font-weight: bold;
 }
 
+#generate-button {
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 50px;
+
+    border-radius: 20px;
+    transition: 0.5s all ease-in-out;
+}
+
+#generate-button:hover {
+    transform: scale(1.02);
+}
 
 
 /* ------------------------------------------ */

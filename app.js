@@ -74,6 +74,11 @@ function getRandomProvince() {
 }
 
 async function startGame() {
+    const generateButton = document.getElementById('generate-button');
+
+    document.getElementById('score').textContent = '0'; 
+
+    generateButton.textContent = 'Zrestartuj';
     await getRandomProvince();
 
     if (!geojsonLayer) {
