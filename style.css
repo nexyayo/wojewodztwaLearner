@@ -94,6 +94,15 @@ body::-webkit-scrollbar {
     transform: scale(1.007);
 }
 
+.interface-position {
+    margin-bottom: 20%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #scoreboard {
     align-items: center;
     justify-content: center;

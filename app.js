@@ -154,6 +154,7 @@ function highlightProvince(province, color) {
         }
     }
 }
+
 function checkResetConditions() {
     const allProvinces = geojsonLayer.getLayers();
     const allRed = allProvinces.every(province => {
@@ -183,7 +184,7 @@ function closePopup() {
     const popup = document.getElementById("start-popup")
     const interface = document.getElementById("interface")
 
-    interface.style.display = 'block';
+    interface.style.display = 'flex';
     popup.style.display = 'none';
 }
 
