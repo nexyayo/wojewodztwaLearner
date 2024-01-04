@@ -1,6 +1,11 @@
 let geojsonLayer;
 const interface = document.getElementById("interface")
+const scoreboard = document.getElementById("scoreboard")
+const winPopup = document.getElementById("win-background")
+
+scoreboard.style.display = 'none';
 interface.style.display = 'none';
+winPopup.style.display = 'none';
 
 var map = L.map('map', {
     center: [52.13, 19.29],
@@ -32,6 +37,33 @@ async function getData() {
         }
     }).addTo(map);
 }
+
+let timerInterval; 
+let seconds = 0; 
+
+function formatTime(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const remainingSeconds = timeInSeconds % 60;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Funkcja startująca timer
+function startTimer() {
+    timerInterval = setInterval(() => {
+        seconds++;
+        document.getElementById('timer').textContent = formatTime(seconds);
+    }, 1000);
+}
+
+// Funkcja resetująca timer
+function resetTimer() {
+    clearInterval(timerInterval);
+    seconds = 0;
+    document.getElementById('timer').textContent = formatTime(seconds);
+}
+
 
 const provinces = [
     { name: 'Dolnośląskie' },
@@ -80,6 +112,8 @@ async function startGame() {
 
     generateButton.textContent = 'Zrestartuj';
     await getRandomProvince();
+    resetTimer();
+    startTimer(); 
 
     if (!geojsonLayer) {
         const response = await fetch("https://raw.githubusercontent.com/ppatrzyk/polska-geojson/master/wojewodztwa/wojewodztwa-max.geojson");
@@ -171,12 +205,28 @@ function resetGame() {
     guessedProvinces = [];
     remainingProvinces = [...provinces];
 
-    alert('KONIEC GRY');
-    geojsonLayer.resetStyle(); 
+    clearInterval(timerInterval);
+
+    const timeSpent = formatTime(seconds); 
+
+    const timeDisplay = document.getElementById('user-time');
+    timeDisplay.innerHTML = timeSpent;
 
     document.getElementById('province-name').innerHTML = ''; 
     document.getElementById('score').innerHTML = 0;
+
+    winPopup.style.display = 'flex'; 
+    interface.style.display = 'none';
+    scoreboard.style.display = 'none';
 }
+
+function restartGame() {
+    winPopup.style.display = 'none'; 
+    interface.style.display = 'flex';
+    scoreboard.style.display = 'flex';
+    startGame(); 
+}
+
 
 document.getElementById('generate-button').addEventListener('click', startGame);
 
@@ -185,7 +235,10 @@ function closePopup() {
     const interface = document.getElementById("interface")
 
     interface.style.display = 'flex';
+    scoreboard.style.display = 'flex';
     popup.style.display = 'none';
 }
 
+document.getElementById('ending-button').addEventListener('click', restartGame);
+document.getElementById('generate-button').addEventListener('click', startGame);
 getData();

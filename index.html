@@ -30,8 +30,29 @@
         <button id="close-popup" onclick="closePopup()">Zamknij</button>
     </div>
 
+    <div id="win-background">
+        <div id="win-popup">
+            <img src="./imgs/medal.png" id="medal-logo">
+    
+            <div id="win-main-text">
+                <span id="congratulations-text">Gratulacje!</span>
+                <span id="win-text">Udało ci się odgadnąć nazwy wszystkich województw!</span>
+            </div>
+    
+            <div id="win-stats">
+                <span id="your-time">Twój czas</span>
+                <p id="user-time">00:00</p>
+            </div>
+    
+            <button id="ending-button">Zrestartuj grę</button>
+        </div>
+    </div>
+
     <div id="scoreboard">
-        <span id="score">0</span> <span id="slash">/</span> <span id="max">16</span>
+        <span id="timer">00:00</span>
+        <div class="score-container">
+            <span id="score">0</span> <span id="slash">/</span> <span id="max">16</span>
+        </div>
     </div>
 
     <div id="interface">
