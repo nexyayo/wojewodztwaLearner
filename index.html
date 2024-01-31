@@ -7,7 +7,8 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
     <link rel="stylesheet" href="./style.css">
-    <title>wojewodztwaGame ~ nexy</title>
+    <title>wojewodztwaLearner</title>
+    <link rel="icon" type="image/x-icon" href="./imgs/favicon.png">
 </head>
 <body>
     <div id="start-popup">
@@ -41,7 +42,10 @@
     
             <div id="win-stats">
                 <span id="your-time">Twój czas</span>
-                <p id="user-time">00:00</p>
+                <span id="user-time">00:00</span>
+
+                <span id="your-errors">Twoje błędy</span>
+                <span id="user-errors">0</span>
             </div>
     
             <button id="ending-button">Zrestartuj grę</button>
@@ -53,6 +57,7 @@
         <div class="score-container">
             <span id="score">0</span> <span id="slash">/</span> <span id="max">16</span>
         </div>
+        <span id="error-counter">❌ 0</span>
     </div>
 
     <div id="interface">

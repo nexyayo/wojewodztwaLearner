@@ -114,13 +114,13 @@ body::-webkit-scrollbar {
     background-color: white;
 
     width: 100px;
-    height: 60px;
+    height: 80px;
 
     left: 50%;
-    top: 30px;
     transform: translate(-50%, -50%);
 
     border-radius: 0px 0px 10px 10px;
+    top: 40px;
 
 }
 
@@ -129,6 +129,10 @@ body::-webkit-scrollbar {
 }
 
 #score {
+    font-weight: bold;
+}
+
+#error-counter {
     font-weight: bold;
 }
 
@@ -182,8 +186,8 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
 
-    height: 500px;
-    width: 300px;
+    height: 600px;
+    width: 400px;
     left: 50%;
     top: 50%; 
 
@@ -222,6 +226,18 @@ body::-webkit-scrollbar {
     font-weight: bold;
 
     transition: 0.5s all ease-in-out;
+}
+
+#your-errors {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+
+    transition: 0.5s all ease-in-out;
+}
+
+#your-errors:hover {
+    color: orange;
 }
 
 #your-time:hover {

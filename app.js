@@ -1,4 +1,5 @@
 let geojsonLayer;
+let errorCount = 0;
 const interface = document.getElementById("interface")
 const scoreboard = document.getElementById("scoreboard")
 const winPopup = document.getElementById("win-background")
@@ -49,7 +50,7 @@ function formatTime(timeInSeconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-// Funkcja startująca timer
+
 function startTimer() {
     timerInterval = setInterval(() => {
         seconds++;
@@ -57,7 +58,7 @@ function startTimer() {
     }, 1000);
 }
 
-// Funkcja resetująca timer
+
 function resetTimer() {
     clearInterval(timerInterval);
     seconds = 0;
@@ -111,6 +112,10 @@ async function startGame() {
     document.getElementById('score').textContent = '0'; 
 
     generateButton.textContent = 'Zrestartuj';
+    
+    errorCount = 0;
+    document.getElementById('error-counter').textContent = `❌ ${errorCount}`;
+
     await getRandomProvince();
     resetTimer();
     startTimer(); 
@@ -178,6 +183,9 @@ function highlightProvince(province, color) {
             if (newScore > parseInt(maxProvinces, 10)) {
                 document.getElementById('max').textContent = newScore;
             }
+        } else if (color === 'red') {
+            errorCount++;
+            document.getElementById('error-counter').textContent = `❌ ${errorCount}`;
         }
         province.setStyle({ fillColor: color });
 
@@ -212,6 +220,8 @@ function resetGame() {
     const timeDisplay = document.getElementById('user-time');
     timeDisplay.innerHTML = timeSpent;
 
+    document.getElementById('user-errors').textContent = errorCount;
+
     document.getElementById('province-name').innerHTML = ''; 
     document.getElementById('score').innerHTML = 0;
 
@@ -224,6 +234,10 @@ function restartGame() {
     winPopup.style.display = 'none'; 
     interface.style.display = 'flex';
     scoreboard.style.display = 'flex';
+
+    errorCount = 0;
+    document.getElementById('error-counter').textContent = `❌ ${errorCount}`;
+    resetTimer();
     startGame(); 
 }
 
@@ -237,6 +251,9 @@ function closePopup() {
     interface.style.display = 'flex';
     scoreboard.style.display = 'flex';
     popup.style.display = 'none';
+
+    errorCount = 0;
+    document.getElementById('error-counter').textContent = `❌ ${errorCount}`;
 }
 
 document.getElementById('ending-button').addEventListener('click', restartGame);
